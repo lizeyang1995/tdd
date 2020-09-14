@@ -3,16 +3,25 @@ public class Mommifier {
         if (string == null) {
             throw new IllegalArgumentException();
         }
-        float numberOfVowel = 0;
+        float count = numberOfVowel(string);
         float stringLength = string.length();
-        for (int index = 0; index < string.length(); index++) {
-            if (string.charAt(index) == 'a' || string.charAt(index) == 'e' || string.charAt(index) == 'i' || string.charAt(index) == 'o' || string.charAt(index) == 'u') {
-                numberOfVowel++;
-            }
-        }
-        if (numberOfVowel / stringLength <= 0.3) {
+        if (count / stringLength <= 0.3) {
             return string;
         }
         return null;
+    }
+
+    private float numberOfVowel(String string) {
+        float counting = 0;
+        for (int index = 0; index < string.length(); index++) {
+            if (isVowel(string.charAt(index))) {
+                counting++;
+            }
+        }
+        return counting;
+    }
+
+    private boolean isVowel(char character) {
+        return character == 'a' || character == 'e' || character == 'i' || character == 'o' || character == 'u';
     }
 }
