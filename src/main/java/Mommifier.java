@@ -18,7 +18,7 @@ public class Mommifier {
             if (presentIndex < string.length() && isVowel(string.charAt(presentIndex))) {
                 presentIndex++;
                 continue;
-            } else if (previousIndex != presentIndex){
+            } else if (isConsecutiveVowels(presentIndex, previousIndex)){
                 string.replace(previousIndex, presentIndex, mommy);
                 previousIndex += mommy.length();
                 presentIndex = previousIndex;
@@ -28,6 +28,10 @@ public class Mommifier {
             previousIndex++;
         }
         return string.toString();
+    }
+
+    private boolean isConsecutiveVowels(int presentIndex, int previousIndex) {
+        return previousIndex != presentIndex;
     }
 
     private float numberOfVowel(StringBuilder string) {
