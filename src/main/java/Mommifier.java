@@ -3,18 +3,22 @@ public class Mommifier {
         if (string == null) {
             throw new IllegalArgumentException();
         }
-        float count = numberOfVowel(string);
+        StringBuilder result = new StringBuilder(string);
+        float count = numberOfVowel(result);
         float stringLength = string.length();
         if (count / stringLength <= 0.3) {
             return string;
         }
-        return null;
+        return result.toString();
     }
 
-    private float numberOfVowel(String string) {
+    private float numberOfVowel(StringBuilder string) {
+        String mommy = "mommy";
         float counting = 0;
         for (int index = 0; index < string.length(); index++) {
             if (isVowel(string.charAt(index))) {
+                string.replace(index, index + 1, mommy);
+                index += mommy.length();
                 counting++;
             }
         }
