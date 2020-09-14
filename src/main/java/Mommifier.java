@@ -9,16 +9,31 @@ public class Mommifier {
         if (count / stringLength <= 0.3) {
             return string;
         }
-        return result.toString();
+        return replaceVowelsWithMommy(result);
+    }
+
+    private String replaceVowelsWithMommy(StringBuilder string) {
+        String mommy = "mommy";
+        for (int previousIndex = 0, presentIndex = 0; presentIndex <= string.length();) {
+            if (presentIndex < string.length() && isVowel(string.charAt(presentIndex))) {
+                presentIndex++;
+                continue;
+            } else if (previousIndex != presentIndex){
+                string.replace(previousIndex, presentIndex, mommy);
+                previousIndex += mommy.length();
+                presentIndex = previousIndex;
+                continue;
+            }
+            presentIndex++;
+            previousIndex++;
+        }
+        return string.toString();
     }
 
     private float numberOfVowel(StringBuilder string) {
-        String mommy = "mommy";
         float counting = 0;
         for (int index = 0; index < string.length(); index++) {
             if (isVowel(string.charAt(index))) {
-                string.replace(index, index + 1, mommy);
-                index += mommy.length();
                 counting++;
             }
         }

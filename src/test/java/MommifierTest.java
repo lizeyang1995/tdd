@@ -22,4 +22,11 @@ public class MommifierTest {
         String result = mommifier.convert("hih");
         assertEquals("hmommyh", result);
     }
+
+    @Test
+    void should_replace_with_mommy_when_vowel_characters_in_the_given_string_are_larger_than_30_percent_2() {
+        Mommifier mommifier = new Mommifier();
+        String result = mommifier.convert("hiihaed");
+        assertEquals("hmommyhmommyd", result);
+    }
 }
