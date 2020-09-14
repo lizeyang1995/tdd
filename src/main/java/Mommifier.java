@@ -4,12 +4,17 @@ public class Mommifier {
             throw new IllegalArgumentException();
         }
         StringBuilder result = new StringBuilder(string);
-        float count = numberOfVowel(result);
-        float stringLength = string.length();
-        if (count / stringLength <= 0.3) {
+        if (isNormalString(result)) {
             return string;
         }
         return replaceVowelsWithMommy(result);
+    }
+
+    private boolean isNormalString(StringBuilder result) {
+        double count = numberOfVowel(result);
+        double stringLength = result.length();
+        double percentage = 0.3;
+        return count / stringLength <= percentage;
     }
 
     private String replaceVowelsWithMommy(StringBuilder string) {
